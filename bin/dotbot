@@ -7,7 +7,7 @@
 # is useful because we don't know the name of the python binary.
 
 ''':' # begin python string; this line is interpreted by the shell as `:`
-DOTBOT_PLUGINS_DIR="${0:a:h:h}/plugins"
+DOTBOT_PLUGINS_DIR="${DOTBOT_PLUGINS_DIR:-${0:a:h:h}/plugins}"
 DOTBOT_OPTS=()
 for plugin in "$DOTBOT_PLUGINS_DIR/"*; do
   DOTBOT_OPTS+=("-p" "$plugin")
