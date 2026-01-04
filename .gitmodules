@@ -2,3 +2,27 @@
 	path = lib/pyyaml
 	url = https://github.com/yaml/pyyaml
 	ignore = dirty
+[submodule "plugins/dotbot-brew"]
+	path = plugins/dotbot-brew
+	url = git@github.com:wren/dotbot-brew.git
+[submodule "plugins/dotbot-gh-extension"]
+	path = plugins/dotbot-gh-extension
+	url = git@github.com:fundor333/dotbot-gh-extension.git
+[submodule "plugins/dotbot-git"]
+	path = plugins/dotbot-git
+	url = git@github.com:DrDynamic/dotbot-git.git
+[submodule "plugins/dotbot-if"]
+	path = plugins/dotbot-if
+	url = git@github.com:s0cks/dotbot-if.git
+[submodule "plugins/dotbot-jsonnet"]
+	path = plugins/dotbot-jsonnet
+	url = git@github.com:s0cks/dotbot-jsonnet.git
+[submodule "plugins/dotbot-mise"]
+	path = plugins/dotbot-mise
+	url = git@github.com:s0cks/dotbot-mise.git
+[submodule "plugins/dotbot-ya"]
+	path = plugins/dotbot-ya
+	url = git@github.com:s0cks/dotbot-ya.git
+[submodule "plugins/dotbot-watchman"]
+	path = plugins/dotbot-watchman
+	url = git@github.com:s0cks/dotbot-watchman.git
