@@ -122,7 +122,7 @@ def main() -> None:
                 hash_msg = f" (git {git_hash[:10]})"
             except (OSError, subprocess.CalledProcessError):
                 hash_msg = ""
-            print(f"\tDotbot @s0cks custom version: {dotbot.__version__}{hash_msg}*")  # noqa: T201
+            print(f"Dotbot @s0cks custom version: {dotbot.__version__}{hash_msg}*")  # noqa: T201
             sys.exit(0)
         if options.super_quiet or options.quiet:
             log.set_level(Level.WARNING)
