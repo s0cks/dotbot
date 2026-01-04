@@ -7,19 +7,16 @@
 # is useful because we don't know the name of the python binary.
 
 ''':' # begin python string; this line is interpreted by the shell as `:`
-local DEFAULT_OPTS=(
-  "-p /usr/local/share/dotbot/plugins/dotbot-brew"
-  "-p /usr/local/share/dotbot/plugins/dotbot-gh-extension"
-  "-p /usr/local/share/dotbot/plugins/dotbot-git"
-  "-p /usr/local/share/dotbot/plugins/dotbot-if"
-  "-p /usr/local/share/dotbot/plugins/dotbot-jsonnet"
-  "-p /usr/local/share/dotbot/plugins/dotbot-mise"
-  "-p /usr/local/share/dotbot/plugins/dotbot-watchman"
-  "-p /usr/local/share/dotbot/plugins/dotbot-ya"
-  "--exit-on-failure"
-)
-command -v python3 >/dev/null 2>&1 && exec python3 "$0" "${(j[ ])DEFAULT_OPTS}" "$@"
-command -v python  >/dev/null 2>&1 && exec python  "$0" "${(j[ ])DEFAULT_OPTS}" "$@"
+local DOTBOT_PLUGINS_DIR="${0:a:h:h}/plugins"
+local DOTBOT_OPTS=()
+for plugin in "$DOTBOT_PLUGINS_DIR/*"; do
+  DOTBOT_OPTS+=(
+    "-p"
+    "$plugin"
+  )
+end
+command -v python3 >/dev/null 2>&1 && exec python3 "$0" $DOTBOT_OPTS "$@"
+command -v python  >/dev/null 2>&1 && exec python  "$0" $DOTBOT_OPTS "$@"
 >&2 echo "error: cannot find python"
 exit 1
 '''
