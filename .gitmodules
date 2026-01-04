@@ -26,3 +26,6 @@
 [submodule "plugins/dotbot-watchman"]
 	path = plugins/dotbot-watchman
 	url = git@github.com:s0cks/dotbot-watchman.git
+[submodule "plugins/dotbot-eget"]
+	path = plugins/dotbot-eget
+	url = git@github.com:s0cks/dotbot-eget.git
