@@ -13,8 +13,12 @@ from dotbot.util import module
 
 
 def add_options(parser: ArgumentParser) -> None:
-    parser.add_argument("-Q", "--super-quiet", action="store_true", help=SUPPRESS)  # deprecated
-    parser.add_argument("-q", "--quiet", action="store_true", help="suppress most output")
+    parser.add_argument(
+        "-Q", "--super-quiet", action="store_true", help=SUPPRESS
+    )  # deprecated
+    parser.add_argument(
+        "-q", "--quiet", action="store_true", help="suppress most output"
+    )
     parser.add_argument(
         "-v",
         "--verbose",
@@ -24,9 +28,18 @@ def add_options(parser: ArgumentParser) -> None:
         "-v: show informational messages\n"
         "-vv: also, set shell commands stderr/stdout to true",
     )
-    parser.add_argument("-d", "--base-directory", help="execute commands from within BASE_DIR", metavar="BASE_DIR")
     parser.add_argument(
-        "-c", "--config-file", help="run commands given in CONFIG_FILE", metavar="CONFIG_FILE", nargs="+"
+        "-d",
+        "--base-directory",
+        help="execute commands from within BASE_DIR",
+        metavar="BASE_DIR",
+    )
+    parser.add_argument(
+        "-c",
+        "--config-file",
+        help="run commands given in CONFIG_FILE",
+        metavar="CONFIG_FILE",
+        nargs="+",
     )
     parser.add_argument(
         "-p",
@@ -37,7 +50,11 @@ def add_options(parser: ArgumentParser) -> None:
         help="load PLUGIN as a plugin",
         metavar="PLUGIN",
     )
-    parser.add_argument("--disable-built-in-plugins", action="store_true", help="disable built-in plugins")
+    parser.add_argument(
+        "--disable-built-in-plugins",
+        action="store_true",
+        help="disable built-in plugins",
+    )
     parser.add_argument(
         "--plugin-dir",
         action="append",
@@ -46,12 +63,34 @@ def add_options(parser: ArgumentParser) -> None:
         metavar="PLUGIN_DIR",
         help=SUPPRESS,  # deprecated
     )
-    parser.add_argument("--only", nargs="+", help="only run specified directives", metavar="DIRECTIVE")
-    parser.add_argument("--except", nargs="+", dest="skip", help="skip specified directives", metavar="DIRECTIVE")
-    parser.add_argument("-n", "--dry-run", action="store_true", help="print what would be done, without doing it")
-    parser.add_argument("--force-color", dest="force_color", action="store_true", help="force color output")
-    parser.add_argument("--no-color", dest="no_color", action="store_true", help="disable color output")
-    parser.add_argument("--version", action="store_true", help="show program's version number and exit")
+    parser.add_argument(
+        "--only", nargs="+", help="only run specified directives", metavar="DIRECTIVE"
+    )
+    parser.add_argument(
+        "--except",
+        nargs="+",
+        dest="skip",
+        help="skip specified directives",
+        metavar="DIRECTIVE",
+    )
+    parser.add_argument(
+        "-n",
+        "--dry-run",
+        action="store_true",
+        help="print what would be done, without doing it",
+    )
+    parser.add_argument(
+        "--force-color",
+        dest="force_color",
+        action="store_true",
+        help="force color output",
+    )
+    parser.add_argument(
+        "--no-color", dest="no_color", action="store_true", help="disable color output"
+    )
+    parser.add_argument(
+        "--version", action="store_true", help="show program's version number and exit"
+    )
     parser.add_argument(
         "-x",
         "--exit-on-failure",
@@ -83,7 +122,7 @@ def main() -> None:
                 hash_msg = f" (git {git_hash[:10]})"
             except (OSError, subprocess.CalledProcessError):
                 hash_msg = ""
-            print(f"Dotbot version {dotbot.__version__}{hash_msg}")  # noqa: T201
+            print(f"\tDotbot @s0cks custom version: {dotbot.__version__}{hash_msg}*")  # noqa: T201
             sys.exit(0)
         if options.super_quiet or options.quiet:
             log.set_level(Level.WARNING)
@@ -103,7 +142,9 @@ def main() -> None:
         plugins = []
         if not options.disable_built_in_plugins:
             plugins.extend([Clean, Create, Link, Shell])
-        module.load_plugins(options.plugin_dirs, plugins)  # note, plugin_dirs is deprecated
+        module.load_plugins(
+            options.plugin_dirs, plugins
+        )  # note, plugin_dirs is deprecated
         module.load_plugins(options.plugins, plugins)
 
         if not options.config_file:
@@ -118,7 +159,9 @@ def main() -> None:
             # default to directory of first config file
             base_directory = os.path.dirname(os.path.abspath(options.config_file[0]))
         os.chdir(base_directory)
-        dotbot.dispatcher._all_plugins = plugins  # for backwards compatibility, see dispatcher.py  # noqa: SLF001
+        dotbot.dispatcher._all_plugins = (
+            plugins  # for backwards compatibility, see dispatcher.py  # noqa: SLF001
+        )
         dispatcher = Dispatcher(
             base_directory,
             only=options.only,
