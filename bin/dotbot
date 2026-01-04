@@ -14,7 +14,6 @@ if [[ ! -v DOTBOT_PLUGINS_DIR  ]]; then
     DOTBOT_PLUGINS_DIR="${0:a:h:h}/plugins"
   fi
 fi
-echo "plugins dir: $DOTBOT_PLUGINS_DIR"
 DOTBOT_OPTS=()
 for plugin in "$DOTBOT_PLUGINS_DIR/"*; do
   DOTBOT_OPTS+=("-p" "$plugin")
